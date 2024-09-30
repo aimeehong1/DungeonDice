@@ -8,15 +8,45 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var resultMessage = ""
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        GeometryReader { geo in
+            VStack {
+                titleView
+                
+                Spacer()
+                
+                resultMessageView
+                
+                Spacer()
+                
+                ButtonLayout(resultMessage: $resultMessage)
+                
+            }
+            .padding()
         }
-        .padding()
     }
+}
+
+extension ContentView {
+    private var titleView: some View {
+        Text("Dungeon Dice")
+            .font(.largeTitle)
+            .fontWeight(.black)
+            .foregroundStyle(.red)
+    }
+    
+    private var resultMessageView: some View {
+        Text(resultMessage)
+            .font(.largeTitle)
+            .fontWeight(.medium)
+            .frame(height: 150)
+            .multilineTextAlignment(.center)
+    }
+    
 }
 
 #Preview {
